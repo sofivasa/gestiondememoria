@@ -14,5 +14,12 @@ int main() {
         perror("mmap");
         exit(EXIT_FAILURE);
 
-  
-}
+    }
+    pid_t pid = fork();
+    if (pid == 0) {
+        // Proceso hijo
+        printf("Proceso hijo escribiendo en memoria compartida\n");
+        strcpy(shared_memory, "Hola, soy el proceso hijo");
+        exit(EXIT_SUCCESS);
+
+    }
