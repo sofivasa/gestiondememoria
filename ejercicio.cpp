@@ -21,5 +21,17 @@ int main() {
         printf("Proceso hijo escribiendo en memoria compartida\n");
         strcpy(shared_memory, "Hola, soy el proceso hijo");
         exit(EXIT_SUCCESS);
-
+    } else if (pid > 0) {
+        // Proceso padre
+        wait(NULL);
+        printf("Proceso padre leyendo de memoria compartida\n");
+        printf("Mensaje: %s\n", shared_memory);
+    } else {
+        perror("fork");
+        exit(EXIT_FAILURE);
     }
+    return 0;
+
+}
+
+    
